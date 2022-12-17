@@ -1,39 +1,90 @@
-* > div {
-    border: 1px solid black;
+:root {
+    --bg-main-color: rgb(226, 232, 240);
+    --accent-color-1: rgb(25, 146, 212);
+    --accent-color-2: rgb(241, 178, 34);
 }
 
 .header { grid-area: header; }
 .sidebar { grid-area: sidebar; }
 .content { grid-area: content; }
-.projects { grid-area: projects; }
+.project-section { grid-area: projects; }
 .announcements { grid-area: announcements; }
 .trending { grid-area: trending; }
 
 
 body {
+    font-family: 'Roboto', sans-serif;
     height: 100vh;
     margin: 0;
     display: grid;
-    grid-template-columns: 1fr 5fr;
+    grid-template-columns: 400px 1fr;
     grid-template-rows: auto 1fr;
     grid-template-areas:
         "sidebar header"
         "sidebar content"
 }
 
+.header {
+    box-shadow: 0px 5px rgb(218, 218, 218);
+    padding: 40px;
+    padding-bottom: 20px;
+    padding-top: 10px;
+}
+
+.sidebar {
+    background-color: var(--accent-color-1);
+}
+
+button {
+    background-color: transparent;
+    border: 0px;
+}
+
+.announcements > .cards, .trending > .cards, .project-card {
+    background-color: white;
+    border: 1px solid transparent;
+    border-radius: 10px;
+    box-shadow: 5px 5px rgb(218, 218, 218);
+    padding: 30px;
+}
+
+.border {
+    background-color: rgb(89, 89, 89);
+    width: 100%;
+    height: 1px;
+}
+
+.project-card {
+    border-left: 10px solid var(--accent-color-2);
+}
+
 .header-search {
     display: grid;
     grid-template-columns: 2fr 1fr;
+    margin: 10px;
+    align-items: center;
+    gap: 100px;
 }
 
-.header-search .left {
+.search-field {
+    background-color: var(--bg-main-color);
+    border-radius: 50px;
+    margin-left: 20px;
+    min-width: 100px;
+    max-width: 800px;
+}
+
+.header-search > .left {
     display: grid;
     grid-template-columns: 50px auto;
 }
 
-.header-search .right {
+.header-search > .right {
     display: grid;
-    grid-template-columns: 50px 50px auto;
+    align-items: center;
+    justify-content: end;
+    gap: 50px;
+    grid-template-columns: 40px 80px auto;
 }
 
 .header-icons {
@@ -43,6 +94,7 @@ body {
 
 .header-icons .left {
     display: grid;
+    align-items: center;
     grid-template-columns: minmax(50px, 100px) auto;
 }
 
@@ -50,37 +102,82 @@ body {
     grid-row: span 2;
 }
 
+.header-icons .left > img {
+    grid-row: span 2;
+}
+
+.header-icons .left > p,
+.header-icons .left > h1 {
+    margin: 0;
+}
+
 .header-icons .right {
-    display: grid;
-    grid-template-columns: repeat(3, 1fr)
+    display: flex;
+    align-items: center;
+    justify-content: right;
 }
 
-
-.sidebar-btn {
-    display: grid;
-    grid-template-columns: 20px auto;
+.header-icons .right > button {
+    background-color: var(--accent-color-1);
+    margin: 10px;
+    height: 50px;
+    flex: 0 1 200px;
+    min-width: 100px;
+    border-radius: 100px;
+    color: white;
 }
 
+.sidebar p {
+    font-size: 1.5rem;
+    font-weight: bold;
+    color: white;
+}
 
+.sidebar > .bottom {
+    margin-top: 50px;
+}
 
+.trend-tag {
+    font-size: 18px;
+    font-weight: bold;
+}
 
+ul > li {
+    display: grid;
+    grid-template-columns: 50px 1fr;
+    align-items: center;
+}
+
+li > img {
+    filter: invert();
+    width: 50px;
+    height: 50px;
+}
+
+.icons > img {
+    width: 30px;
+    height: 30px;
+}
+
+li > p {
+    margin-left: 30px;
+}
 
 .content {
+    background-color: var(--bg-main-color);
     display: grid;
     grid-template-columns: auto 400px;
+    gap: 50px;
+    padding: 20px;
     grid-template-areas: 
-    "projects announcements"
-    "projects trending";
+        "projects announcements"
+        "projects trending";
 }
-
-
-
 
 .projects {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
-    grid-template-rows: auto 1fr;
-    grid-auto-rows: 1fr
+    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
 }
 
 .projects > h2{
@@ -101,10 +198,6 @@ body {
     align-self: flex-end;
 }
 
-
-
-
-
 .announcements,
 .trending {
     display: grid;
@@ -122,7 +215,6 @@ body {
     flex-direction: column;
 }
 
-.announcements > .cards > div,
 .trending > .cards > div {
     flex: 1;
     display: flex;
